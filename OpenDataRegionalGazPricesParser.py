@@ -4,7 +4,7 @@
 import wget
 import zipfile
 import os
-import json
+# import json
 from xml.dom.minidom import parse
 import utilities.DatabaseHandler as db
 # import xml.dom.minidom
@@ -111,16 +111,16 @@ class OpenDataRegionalGazPricesParser:
             myHarmonizedDict[aMatchingTableNames[key]] = aDict[key]
         return myHarmonizedDict
 
-    def writeLocalizedPricesToJson(self, aDictOfDeps, aOutputDir,
-                                   aMatchingTableNames, aTemplateName):
-        if os.access(aOutputDir, os.W_OK):
-            for dep, dict in aDictOfDeps.items():
-                myDictToWrite = self.harmonizeGazNames(
-                    dict, aMatchingTableNames)
-                myFileName = aOutputDir + '/' + aTemplateName + dep + '.json'
-                print('myFileName : ', myFileName)
-                with open(myFileName, 'w', encoding='utf-8') as f:
-                    json.dump(myDictToWrite, f, indent=4)
+    # def writeLocalizedPricesToJson(self, aDictOfDeps, aOutputDir,
+    #                                aMatchingTableNames, aTemplateName):
+    #     if os.access(aOutputDir, os.W_OK):
+    #         for dep, dict in aDictOfDeps.items():
+    #             myDictToWrite = self.harmonizeGazNames(
+    #                 dict, aMatchingTableNames)
+    #             myFileName = aOutputDir + '/' + aTemplateName + dep + '.json'
+    #             print('myFileName : ', myFileName)
+    #             with open(myFileName, 'w', encoding='utf-8') as f:
+    #                 json.dump(myDictToWrite, f, indent=4)
 
     def writeToDb(self, aDictofDeps, aMatchingTableNames,
                   aTemplateName, aHost, aPort, aDbname, aUser, aPassword=''):
